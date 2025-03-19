@@ -1,0 +1,25 @@
+#include <avr/io.h>
+#include <util/delay.h>  // Header file for delay functions
+
+#define F_CPU 8000000UL  // Correctly define clock frequency
+
+int main(void)
+{
+	DDRD = 0xFF;  // Set all PORTD pins as output
+
+	// 7-segment display hex codes for digits 0-9
+	unsigned char segment[] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f};
+
+	int i;
+	
+	while (1)
+	{
+		for(i = 0; i < 10; i++)
+		{
+			PORTD = segment[i];  // Output segment value to PORTD
+			_delay_ms(1000);  // 1-second delay
+		}
+	}
+	
+	return 0;
+}
