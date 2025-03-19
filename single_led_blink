@@ -1,0 +1,22 @@
+#include <avr/io.h>
+#include <util/delay.h>      //header file for inbuilt delay
+
+#define F_CPU 8000000ul       //define clock speed
+
+int main(void)
+{
+    /* Replace with your application code */
+	
+	DDRB |= (1<<DDB1);    // set PORTB Pin B1 as output //0b00000010
+    while (1)             //infinite loop
+    {
+		
+		PORTB |= (1<<PB1);   //make PB1 as high
+		_delay_ms(1000);     //delay for 1 sec
+		
+		PORTB &=(~(1<<PB1));  //make PB1 as low
+		_delay_ms(1000);      //delay for 1 sec
+
+		
+    }
+}
